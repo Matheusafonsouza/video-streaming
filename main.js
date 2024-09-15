@@ -16,6 +16,8 @@ const firestore = firebase.firestore();
 const pc = new RTCPeerConnection(servers);
 let localStream = null;
 let remoteStream = null;
+let videoEnabled = true;
+let audioEnabled = true;
 
 const webcamVideo = document.getElementById('webcamVideo');
 const callButton = document.getElementById('callButton');
@@ -28,7 +30,7 @@ const chatList = document.getElementById('chatList');
 const videoButton = document.getElementById('videoButton');
 const micButton = document.getElementById('micButton');
 
-const startWebcam = async (videoEnabled, audioEnabled) => {
+const startWebcam = async () => {
   localStream = await navigator.mediaDevices.getUserMedia({ video: videoEnabled, audio: audioEnabled });
   remoteStream = new MediaStream();
   
@@ -43,7 +45,6 @@ const startWebcam = async (videoEnabled, audioEnabled) => {
   };
 
   webcamVideo.srcObject = localStream;
-  webcamVideo.muted = !audioEnabled;
   remoteVideo.srcObject = remoteStream;
   
   callButton.disabled = false;
@@ -149,17 +150,15 @@ answerButton.onclick = async () => {
 };
 
 videoButton.onclick = async () => {
-  if (webcamVideo.srcObject) {
-    webcamVideo.srcObject = null;
-    await startWebcam(false, false);
-  } else {
-    await startWebcam(true, true);
-  }
+  videoEnabled = !videoEnabled;
+  const videoStream = localStream.getVideoTracks()[0];
+  videoStream.enabled = videoEnabled;
 }
 
 micButton.onclick = async () => {
-  webcamVideo.muted = !webcamVideo.muted;
-  await startWebcam(true, !webcamVideo.muted);
+  audioEnabled = !audioEnabled;
+  const audioStream = localStream.getAudioTracks()[0];
+  audioStream.enabled = false;
 }
 
-startWebcam(true, true);
+startWebcam();
