@@ -158,7 +158,7 @@ videoButton.onclick = async () => {
 micButton.onclick = async () => {
   audioEnabled = !audioEnabled;
   const audioStream = localStream.getAudioTracks()[0];
-  audioStream.enabled = false;
+  audioStream.enabled = audioEnabled;
 }
 
 startWebcam();
