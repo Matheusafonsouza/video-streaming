@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meet</title>
+  </head>
+  <body>
+    <div class="videos">
+      <span>
+        <video id="webcamVideo" autoplay playsinline muted></video>
+      </span>
+      <span>
+        <video id="remoteVideo" autoplay playsinline></video>
+      </span>
+    </div>
+    
+    <button id="videoButton">Video</button>
+    <button id="micButton">Mic</button>
+
+    <div class="actions">
+      <div class="buttons">
+        <div>
+          <h2>Create a new Call</h2>
+          <button id="callButton" disabled>Create Call</button>
+        </div>
+        <div>
+          <h2>Join a Call</h2>
+          <input id="callInput" />
+          <button id="answerButton" disabled>Answer</button>
+        </div>
+      </div>
+
+      <div>
+        <h2>Chat</h2>
+        <input id="chatInput" />
+        <button id="chatInputButton" disabled>Chat</button>
+        <ul id="chatList"></ul>
+      </div>
+    </div>
+
+
+    <script type="module" src="/main.js"></script>
+
+  </body>
+</html>
