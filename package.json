@@ -2,7 +2,7 @@
   "name": "meet",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port $PORT",
     "build": "vite build",
     "serve": "vite preview --port $PORT"
   },
