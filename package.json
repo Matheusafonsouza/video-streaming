@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview --port 80"
+    "serve": "vite preview --port $PORT"
   },
   "devDependencies": {
     "vite": "^2.0.5"
